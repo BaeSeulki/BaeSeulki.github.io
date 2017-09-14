@@ -271,6 +271,105 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-BiLSTM-CRF-for-WordSegment"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/09/14/BiLSTM-CRF-for-WordSegment/">BiLSTM+CRF实现分词、命名实体识别、词性标注</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/14/BiLSTM-CRF-for-WordSegment/" class="article-date">
+	  <time datetime="2017-09-14T09:31:08.000Z" itemprop="datePublished">2017-09-14</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/NaturalLanguage/">NaturalLanguage</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><ul>
+<li>清楚英文的实现，使用tensorflow</li>
+<li>扩展到中文分词</li>
+</ul>
+<p>话不多说，先看papers：</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><h2 id="1-Bidirectional-LSTM-CRF-Models-for-Sequence-Tagging-2015"><a href="#1-Bidirectional-LSTM-CRF-Models-for-Sequence-Tagging-2015" class="headerlink" title="[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015"></a>[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015</h2><p><a href="https://arxiv.org/pdf/1508.01991" target="_blank" rel="external">Read Full PDF</a>  </p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/">LSTM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NaturalLanguage/">NaturalLanguage</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-tensorflow"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/09/14/tensorflow/">tensorflow踩的坑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/14/tensorflow/" class="article-date">
+	  <time datetime="2017-09-14T08:27:04.000Z" itemprop="datePublished">2017-09-14</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Tensorflow/">Tensorflow</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><p>具体详见源码安装吧，cpu-only，一是自己小破本不支持gpu( If I hit five million in the lottery, I would buy a GTX1080ti to play a game first. :)，二是先跑起来再说吧。<br><a href="https://www.tensorflow.org/install/install_sources" target="_blank" rel="external">教程</a><br><a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">github源码</a><br>run demo可能会出现一些warning，试试下面方法解决。</p>
+<blockquote>
+<p>mkdir _python_build<br>cd _python_build<br>ln -s ../bazel-bin/tensorflow/tools/pip_package/build_pip_package.runfiles/org_tensorflow/<em> .<br>ln -s ../tensorflow/tools/pip_package/</em> .<br>python setup.py develop</p>
+</blockquote>
+<p>　　之后每次修改C++文件, 或者添加, 删除, 移动或修改任何Python文件之后, 都需要运行<br><code>bazel build -c opt //tensorflow/tools/pip_package:build_pip_package</code><br>重新构建（参数根据情况设置，参考教程吧）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tensorflow-MachineLearning/">Tensorflow MachineLearning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-GithubMind"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     

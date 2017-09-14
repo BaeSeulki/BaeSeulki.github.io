@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tag: naturallanguage | 飘叶音</title>
+  <title>bilstm+crf实现分词、命名实体识别、词性标注 | 飘叶音</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="igemelli, piaoyeyin, ecnu" />
@@ -11,16 +11,18 @@
   
   
   
-  <meta name="description" content="Your Eyes Can See the World Without Me.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="飘叶音">
-<meta property="og:url" content="http://piaoyeyin.top/tags/NaturalLanguage/index.html">
+  <meta name="description" content="Task 清楚英文的实现，使用tensorflow 扩展到中文分词  话不多说，先看papers： References[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015Read Full PDF   摘要">
+<meta name="keywords" content="NaturalLanguage,DeepLearning,LSTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BiLSTM+CRF实现分词、命名实体识别、词性标注">
+<meta property="og:url" content="http://piaoyeyin.top/2017/09/14/BiLSTM-CRF-for-WordSegment/index.html">
 <meta property="og:site_name" content="飘叶音">
-<meta property="og:description" content="Your Eyes Can See the World Without Me.">
+<meta property="og:description" content="Task 清楚英文的实现，使用tensorflow 扩展到中文分词  话不多说，先看papers： References[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015Read Full PDF   摘要">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-14T09:45:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="飘叶音">
-<meta name="twitter:description" content="Your Eyes Can See the World Without Me.">
+<meta name="twitter:title" content="BiLSTM+CRF实现分词、命名实体识别、词性标注">
+<meta name="twitter:description" content="Task 清楚英文的实现，使用tensorflow 扩展到中文分词  话不多说，先看papers： References[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015Read Full PDF   摘要">
   
     <link rel="alternate" href="/atom.xml" title="飘叶音" type="application/atom+xml">
   
@@ -59,8 +61,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css" >
-  
   
   
 
@@ -68,7 +68,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -91,7 +91,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="128px" height="128px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
@@ -160,65 +160,106 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-  
-  
+          <section id="main" style="float:none;"><article id="post-BiLSTM-CRF-for-WordSegment" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2017" class="archive-year">2017</a></h1>
-        </div>
-        <div class="archives">
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      BiLSTM+CRF实现分词、命名实体识别、词性标注
+    </h1>
+  
+
+      </header>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
+    <div class="article-meta">
       
-	<a href="/2017/09/14/BiLSTM-CRF-for-WordSegment/" class="archive-article-date">
+	<a href="/2017/09/14/BiLSTM-CRF-for-WordSegment/" class="article-date">
 	  <time datetime="2017-09-14T09:31:08.000Z" itemprop="datePublished">2017-09-14</time>
 	</a>
 
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2017/09/14/BiLSTM-CRF-for-WordSegment/">BiLSTM+CRF实现分词、命名实体识别、词性标注</a>
-    </h1>
-  
+    <a class="article-category-link" href="/categories/NaturalLanguage/">NaturalLanguage</a>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
       
-	<a href="/2017/09/12/WhateverYouKnow/" class="archive-article-date">
-	  <time datetime="2017-09-12T11:28:21.000Z" itemprop="datePublished">2017-09-12</time>
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
 	</a>
 
+    </div>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/WhateverYouKnow/">朝花不可夕拾</a>
-    </h1>
-  
+        <h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><ul>
+<li>清楚英文的实现，使用tensorflow</li>
+<li>扩展到中文分词</li>
+</ul>
+<p>话不多说，先看papers：</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><h2 id="1-Bidirectional-LSTM-CRF-Models-for-Sequence-Tagging-2015"><a href="#1-Bidirectional-LSTM-CRF-Models-for-Sequence-Tagging-2015" class="headerlink" title="[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015"></a>[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015</h2><p><a href="https://arxiv.org/pdf/1508.01991" target="_blank" rel="external">Read Full PDF</a>  </p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDcyNy83Mjgw">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
 
-    </header>
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LSTM/">LSTM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NaturalLanguage/">NaturalLanguage</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/14/tensorflow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">tensorflow踩的坑</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
+<!-- Table of Contents -->
 
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">2.</span> <span class="nav-text">References</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Bidirectional-LSTM-CRF-Models-for-Sequence-Tagging-2015"><span class="nav-number">2.1.</span> <span class="nav-text">[1]Bidirectional LSTM-CRF Models for Sequence Tagging. 2015</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">2.1.1.</span> <span class="nav-text">摘要</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
         
       </div>
@@ -315,6 +356,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -398,6 +441,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
