@@ -271,6 +271,52 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-BackgroundSubtraction"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/17/BackgroundSubtraction/" class="article-date">
+	  <time datetime="2017-09-16T20:14:12.000Z" itemprop="datePublished">2017-09-17</time>
+	</a>
+
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: 基于监控视频的前景目标提取<br>date: 2017-09-17 04:14:12<br>categories:</p>
+<ul>
+<li>CV<br>tags:</li>
+<li>Opencv</li>
+</ul>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>4天时间，能完成多少是多少吧，然而准备工作是最烦的了，加上之前没有捣弄过，T T  </p>
+<blockquote>
+<p>安装opencv</p>
+</blockquote>
+<p><code>brew install cmake</code><br><code>brew install pkg-config</code><br><code>brew tap homebrew/science</code><br><code>brew install opencv</code><br>这样就安装好了opencv3.3，不得不说homebrew简直神器！<br>然后一些其他库<br><code>brew install boost</code><br>然而cmake的时候发生：<br><code>Boost include path: /usr/local/include  
+ Could not find the following Boost libraries: boost_python</code><br>黑线脸。。。明明都已经<br><code>sudo chmod -R 777 /usr/local/include</code><br><code>sudo chmod -R 777 /usr/local/lib</code><br><code>brew link boost</code><br>还居然报错，垃圾。怎么解决呢？看来方向错了，一查原来是没有安装boost-python。<br>只好靠<code>brew install boost-python</code>弥补一下，其实在装boost的时候<code>brew install boost --with-python</code> 就好了。<br>自己已经有的环境,<code>python2.7.13</code>, <code>gcc</code> 。<br>重新cmake：</p>
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">-- BGSLIBRARY WITH PYTHON SUPPORT: ON</div><div class="line">-- PYTHON VERSION: 2</div><div class="line">-- OpenCV library status:</div><div class="line">--     version: 3.3.0</div><div class="line">--     libraries: opencv_calib3d;opencv_core;opencv_dnn;opencv_features2d;opencv_flann;opencv_highgui;opencv_imgcodecs;opencv_imgproc;opencv_ml;opencv_objdetect;opencv_photo;opencv_shape;opencv_stitching;opencv_superres;opencv_video;opencv_videoio;opencv_videostab;opencv_aruco;opencv_bgsegm;opencv_bioinspired;opencv_ccalib;opencv_datasets;opencv_dpm;opencv_face;opencv_fuzzy;opencv_img_hash;opencv_line_descriptor;opencv_optflow;opencv_phase_unwrapping;opencv_plot;opencv_reg;opencv_rgbd;opencv_saliency;opencv_stereo;opencv_structured_light;opencv_surface_matching;opencv_text;opencv_tracking;opencv_xfeatures2d;opencv_ximgproc;opencv_xobjdetect;opencv_xphoto</div><div class="line">--     include path: /usr/local/include;/usr/local/include/opencv</div><div class="line">-- SEARCHING FOR BOOST COMPONENT FOR PYTHON 2</div><div class="line">CMake Warning at /usr/local/Cellar/cmake/3.9.2/share/cmake/Modules/FindBoost.cmake:767 (message):</div><div class="line">  Imported targets not available for Boost version 106501</div><div class="line">Call Stack (most recent call first):</div><div class="line">  /usr/local/Cellar/cmake/3.9.2/share/cmake/Modules/FindBoost.cmake:871 (_Boost_COMPONENT_DEPENDENCIES)</div><div class="line">  /usr/local/Cellar/cmake/3.9.2/share/cmake/Modules/FindBoost.cmake:1501 (_Boost_MISSING_DEPENDENCIES)</div><div class="line">  CMakeLists.txt:94 (find_package)</div><div class="line"></div><div class="line"></div><div class="line">-- Boost version: 1.65.1</div><div class="line">-- Found the following Boost libraries:</div><div class="line">--   python</div><div class="line">-- Boost library status:</div><div class="line">--     version: 106501</div><div class="line">--     libraries: /usr/local/lib/libboost_python-mt.dylib</div><div class="line">--     include path: /usr/local/include</div><div class="line">-- Python library status:</div><div class="line">--     executable: /usr/bin/python</div><div class="line">--     version: 2.7.10</div><div class="line">--     library: /usr/lib/libpython2.7.dylib</div><div class="line">--     include path: /usr/include/python2.7</div><div class="line">-- NUMPY_INCLUDE_DIR: /Users/zhouyu/Library/Python/2.7/lib/python/site-packages/numpy/core/include</div><div class="line">-- Configuring done</div><div class="line">-- Generating done</div><div class="line">-- Build files have been written to: /Users/zhouyu/Github/bgslibrary/build</div></pre></td></tr></table></figure>
+<hr>
+<p>成功，wonderful，准备工作告一段落。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-resource-list"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -305,6 +351,9 @@
 <p>  语料库介绍:<br>　　国家语委现代汉语语料库是一个大规模的平衡语料库,语料选材类别广泛,时间跨度大。在线提供检索的语料经过分词和词性标注,可以进行按词检索和分词类的检索。该语料库于1991年12月由国家语言文字工作委员会提出立项,1998年底建成,被列为国家语委“九五”“十五”科研重大项目,得到国家科技部“863”“973”计划多个项目支持(“智能中文信息处理平台”“图像、语音和自然语言理解”“中文信息处理应用基础研究”)。<br>　　国家语委现代汉语通用平衡语料库全库约为1亿字符,其中1997年以前的语料约7000万字符,均为手工录入印刷版语料;1997之后的语料约为3000万字符,手工录入和取自电子文本各半。标注语料库为国家语委现代汉语通用平衡语料库全库的子集,约5000万字符。标注是指分词和词类标注,已经经过3次人工校对,准确率大于&gt;98%。</p>
 </blockquote>
 <p><a href="http://www.cssn.cn/yyx/yyxcyzy/201509/W020150922441291714295.pdf" target="_blank" rel="external">国家语委现代汉语通用平衡语料库·标注语料库数据及使用说明</a><br><a href="http://www.cssn.cn/yyx/yyxcyzy/201509/W020150922441286080921.pdf" target="_blank" rel="external">语料库详细介绍</a></p>
+<h1 id="视觉相关"><a href="#视觉相关" class="headerlink" title="视觉相关"></a>视觉相关</h1><ol>
+<li><a href="http://rodrigob.github.io/are_we_there_yet/build/classification_datasets_results.html" target="_blank" rel="external">经典数据集在不同的模型下分类性能对比</a></li>
+</ol>
 
       
     </div>
@@ -405,6 +454,16 @@
 <p>mkdir _python_build<br>cd _python_build<br>ln -s ../bazel-bin/tensorflow/tools/pip_package/build_pip_package.runfiles/org_tensorflow/<em> .<br>ln -s ../tensorflow/tools/pip_package/</em> .<br>python setup.py develop</p>
 </blockquote>
 <p>　　之后每次修改C++文件, 或者添加, 删除, 移动或修改任何Python文件之后, 都需要运行<br><code>bazel build -c opt //tensorflow/tools/pip_package:build_pip_package</code><br>重新构建（参数根据情况设置，参考教程吧）。</p>
+<h2 id="理解图计算"><a href="#理解图计算" class="headerlink" title="理解图计算"></a>理解图计算</h2><p><strong><em>先构建图，再执行图。</em></strong>  </p>
+<ul>
+<li>使用<code>图  graph</code> 来表示计算任务.</li>
+<li>在被称之为 <code>会话 session</code>的上下文 (context) 中执行图.</li>
+<li>使用 <code>tensor</code> 表示数据，看作是一个 n 维的数组或列表，包含<code>Rank``Shape``Type</code></li>
+<li>通过 <code>变量 Variable</code>维护状态信息.</li>
+<li>使用<code>feed</code> 和<code>fetch</code>可以为任意的操作(arbitrary operation) 赋值或者从其中获取数据.</li>
+</ul>
+<h2 id="交互式的使用"><a href="#交互式的使用" class="headerlink" title="交互式的使用"></a>交互式的使用</h2><p>为了便于使用诸如 IPython 之类的 Python 交互环境, 可以使用 <code>InteractiveSession</code> 代替 <code>Session</code>类, 使用 <code>Tensor.eval()</code> 和 <code>Operation.run()</code> 方法代替 <code>Session.run()</code> . 这样可以避免使用一个变量来持有会话.</p>
+<h2 id="Feed"><a href="#Feed" class="headerlink" title="Feed"></a>Feed</h2><p>　　<code>feed</code> 机制可以临时替代图中的任意操作中的<code>tensor</code>, 可以对图中任何操作提交补丁, 直接插入一个 <code>tensor</code>.<br>　　<code>feed</code> 使用一个 <code>tensor</code>值临时替换一个操作的输出结果. 你可以提供 <code>feed</code> 数据作为 <code>run()</code> 调用的参数. <code>feed</code>只在调用它的方法内有效, 方法结束, <code>feed</code>就会消失. 最常见的用例是将某些特殊的操作指定为<code>feed</code>操作, 标记的方法是使用 <code>tf.placeholder()</code> 为这些操作创建占位符.</p>
 
       
     </div>

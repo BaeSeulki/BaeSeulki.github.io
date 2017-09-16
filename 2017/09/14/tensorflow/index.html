@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="飘叶音">
 <meta property="og:description" content="install具体详见源码安装吧，cpu-only，一是自己小破本不支持gpu( If I hit five million in the lottery, I would buy a GTX1080ti to play a game first. :)，二是先跑起来再说吧。教程github源码run demo可能会出现一些warning，试试下面方法解决。  mkdir _python_buil">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-14T09:07:17.000Z">
+<meta property="og:updated_time" content="2017-09-15T07:26:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow踩的坑">
 <meta name="twitter:description" content="install具体详见源码安装吧，cpu-only，一是自己小破本不支持gpu( If I hit five million in the lottery, I would buy a GTX1080ti to play a game first. :)，二是先跑起来再说吧。教程github源码run demo可能会出现一些warning，试试下面方法解决。  mkdir _python_buil">
@@ -198,6 +198,16 @@
 <p>mkdir _python_build<br>cd _python_build<br>ln -s ../bazel-bin/tensorflow/tools/pip_package/build_pip_package.runfiles/org_tensorflow/<em> .<br>ln -s ../tensorflow/tools/pip_package/</em> .<br>python setup.py develop</p>
 </blockquote>
 <p>　　之后每次修改C++文件, 或者添加, 删除, 移动或修改任何Python文件之后, 都需要运行<br><code>bazel build -c opt //tensorflow/tools/pip_package:build_pip_package</code><br>重新构建（参数根据情况设置，参考教程吧）。</p>
+<h2 id="理解图计算"><a href="#理解图计算" class="headerlink" title="理解图计算"></a>理解图计算</h2><p><strong><em>先构建图，再执行图。</em></strong>  </p>
+<ul>
+<li>使用<code>图  graph</code> 来表示计算任务.</li>
+<li>在被称之为 <code>会话 session</code>的上下文 (context) 中执行图.</li>
+<li>使用 <code>tensor</code> 表示数据，看作是一个 n 维的数组或列表，包含<code>Rank``Shape``Type</code></li>
+<li>通过 <code>变量 Variable</code>维护状态信息.</li>
+<li>使用<code>feed</code> 和<code>fetch</code>可以为任意的操作(arbitrary operation) 赋值或者从其中获取数据.</li>
+</ul>
+<h2 id="交互式的使用"><a href="#交互式的使用" class="headerlink" title="交互式的使用"></a>交互式的使用</h2><p>为了便于使用诸如 IPython 之类的 Python 交互环境, 可以使用 <code>InteractiveSession</code> 代替 <code>Session</code>类, 使用 <code>Tensor.eval()</code> 和 <code>Operation.run()</code> 方法代替 <code>Session.run()</code> . 这样可以避免使用一个变量来持有会话.</p>
+<h2 id="Feed"><a href="#Feed" class="headerlink" title="Feed"></a>Feed</h2><p>　　<code>feed</code> 机制可以临时替代图中的任意操作中的<code>tensor</code>, 可以对图中任何操作提交补丁, 直接插入一个 <code>tensor</code>.<br>　　<code>feed</code> 使用一个 <code>tensor</code>值临时替换一个操作的输出结果. 你可以提供 <code>feed</code> 数据作为 <code>run()</code> 调用的参数. <code>feed</code>只在调用它的方法内有效, 方法结束, <code>feed</code>就会消失. 最常见的用例是将某些特殊的操作指定为<code>feed</code>操作, 标记的方法是使用 <code>tf.placeholder()</code> 为这些操作创建占位符.</p>
 
       
     </div>
@@ -264,7 +274,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解图计算"><span class="nav-number">2.</span> <span class="nav-text">理解图计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互式的使用"><span class="nav-number">3.</span> <span class="nav-text">交互式的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feed"><span class="nav-number">4.</span> <span class="nav-text">Feed</span></a></li></ol>
     
     </div>
   </aside>
