@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vps和shadowsocks配置 | 飘叶音</title>
+  <title>tag: sqlalchemy | 飘叶音</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="igemelli, piaoyeyin, ecnu" />
@@ -11,18 +11,16 @@
   
   
   
-  <meta name="description" content="登录vps管理界面 stop服务，重装系统，我选择了centos 7 64位 系统重装好后，会给你一个root密码，如果忘记了可以重置。 ssh登录vps ssh username@ipaddress -p port ,输入初始的root密码。 更改密码passwd 接下来就是干正事了  cd yum -y update yum -y install gcc yum -y install ope">
-<meta name="keywords" content="Shadowsocks">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vps和shadowsocks配置">
-<meta property="og:url" content="http://piaoyeyin.top/2017/09/26/vps-shadowsocks/index.html">
+  <meta name="description" content="Your Eyes Can See the World Without Me.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="飘叶音">
+<meta property="og:url" content="http://piaoyeyin.top/tags/SQLAlchemy/index.html">
 <meta property="og:site_name" content="飘叶音">
-<meta property="og:description" content="登录vps管理界面 stop服务，重装系统，我选择了centos 7 64位 系统重装好后，会给你一个root密码，如果忘记了可以重置。 ssh登录vps ssh username@ipaddress -p port ,输入初始的root密码。 更改密码passwd 接下来就是干正事了  cd yum -y update yum -y install gcc yum -y install ope">
+<meta property="og:description" content="Your Eyes Can See the World Without Me.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-09-26T10:40:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vps和shadowsocks配置">
-<meta name="twitter:description" content="登录vps管理界面 stop服务，重装系统，我选择了centos 7 64位 系统重装好后，会给你一个root密码，如果忘记了可以重置。 ssh登录vps ssh username@ipaddress -p port ,输入初始的root密码。 更改密码passwd 接下来就是干正事了  cd yum -y update yum -y install gcc yum -y install ope">
+<meta name="twitter:title" content="飘叶音">
+<meta name="twitter:description" content="Your Eyes Can See the World Without Me.">
   
     <link rel="alternate" href="/atom.xml" title="飘叶音" type="application/atom+xml">
   
@@ -61,6 +59,8 @@
   
 
   
+    <link rel="stylesheet" href="/css/archive.css" >
+  
   
   
 
@@ -68,7 +68,7 @@
 
 
 
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <body>
 
 
   
@@ -91,7 +91,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                href="#" data-toggle="modal" data-target="#myModal" >
+                 >
                   <img width="128px" height="128px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
@@ -160,149 +160,44 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-vps-shadowsocks" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
+          <section id="main" style="float:none;">
   
-    <h1 class="thumb" class="article-title" itemprop="name">
-      vps和shadowsocks配置
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <h1><a href="/archives/2017" class="archive-year">2017</a></h1>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+	<a href="/2017/10/13/sql/" class="archive-article-date">
+	  <time datetime="2017-10-13T10:00:36.000Z" itemprop="datePublished">2017-10-13</time>
+	</a>
+
+      
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="archive-article-title" href="/2017/10/13/sql/">数据库相关</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/09/26/vps-shadowsocks/" class="article-date">
-	  <time datetime="2017-09-26T09:50:28.000Z" itemprop="datePublished">2017-09-26</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Setting/">Setting</a>
-
-      
-	<a class="article-views">
-	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
-	</span>
-	</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>登录vps<a href="https://kiwivm.64clouds.com/main.php" target="_blank" rel="external">管理界面</a></li>
-<li>stop服务，重装系统，我选择了centos 7 64位</li>
-<li>系统重装好后，会给你一个root密码，如果忘记了可以重置。</li>
-<li>ssh登录vps <code>ssh username@ipaddress -p port</code> ,输入初始的root密码。</li>
-<li>更改密码<code>passwd</code></li>
-<li>接下来就是干正事了</li>
-</ol>
-<pre><code class="shell">cd
-yum -y update
-yum -y install gcc
-yum -y install openssl-devel
-yum -y install wget
-yum install python-setuptools &amp;&amp; easy_install pip
-pip install shadowsocks
-
-vi /etc/shadowsocks.json
-<span class="meta">#</span> 创建配置文件，自行修改ip和端口，还有登录ss的密码。
-{
-"server":"xxx.xx.x.xx",
-"server_port":7777,
-"password":"xxxxxxx",
-"timeout":300,
-"method":"aes-256-cfb",
-"fast_open":false,
-"workers": 1
-}
-
-<span class="meta">#</span>设置开机启动
-vi /etc/rc.local
-ssserver -c /etc/shadowsocks.json -d start
-
-<span class="meta">#</span>启动服务
-ssserver -c /etc/shadowsocks.json -d start
-<span class="meta">#</span>停止服务
-ssserver -c /etc/shadowsocks.json -d stop
-<span class="meta">#</span>重启服务
-ssserver -c /etc/shadowsocks.json -d restart
-</code></pre>
-<p>客户端配置见<a href="https://shadowsocks.org/en/config/quick-guide.html" target="_blank" rel="external">官网吧</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-        
-	<div id="comment">
-		<!-- 来必力City版安装代码 -->
-		<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDcyNy83Mjgw">
-		<script type="text/javascript">
-		   (function(d, s) {
-		       var j, e = d.getElementsByTagName(s)[0];
-
-		       if (typeof LivereTower === 'function') { return; }
-
-		       j = d.createElement(s);
-		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-		       j.async = true;
-
-		       e.parentNode.insertBefore(j, e);
-		   })(document, 'script');
-		</script>
-		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-		</div>
-		<!-- City版安装代码已完成 -->
-	</div>
-
-
-
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/10/13/sql/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          数据库相关
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/09/26/mac-shell-record/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Shell Setting Record</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-<!-- Table of Contents -->
 
-  <aside id="toc-sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
-    
-        <ol class="nav">None</ol>
-    
-    </div>
-  </aside>
 </section>
         
       </div>
@@ -399,8 +294,6 @@ ssserver -c /etc/shadowsocks.json -d restart
 
 
 
-  <script src="/js/dialog.js"></script>
-
 
 
 
@@ -484,8 +377,6 @@ ssserver -c /etc/shadowsocks.json -d restart
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-  
-    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
